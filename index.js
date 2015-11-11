@@ -6,7 +6,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.use('/public', express.static(__dirname + '/public/assets')); // It will find static files like css, js files
+app.use('/public', express.static(__dirname + '/public')); // It will find static files like css, js files
+//app.use(express.static(__dirname + '/public'));
 
 // These two lines are required to retrieve data from POST method
 var bodyParser = require('body-parser');
