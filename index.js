@@ -5,6 +5,8 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var antiSpam = require('socket-anti-spam');
+var clients;
 
 app.use('/public', express.static(__dirname + '/public')); // It will find static files like css, js files
 //app.use(express.static(__dirname + '/public'));
@@ -21,19 +23,35 @@ app.get('/', function(req, res){ // function fire on load of the page (127.0.0.1
 
 app.post('/index', urlencodedParser, function(req, res){  // function fire when post data is send to the uri 127.0.0.1:3000/index
     //console.log("jrentre ici");
-    console.log(req.body);
+    //console.log(req.body);
     aUserName = req.body.username;
-    if(aUserName)
-        console.log("Un username catché !!!");
+    /*if(aUserName)
+        //console.log("Un username catché !!!");*/
     if(aUserName && aUserName != '')
         res.sendFile(__dirname + '/home.html');
     else
         res.sendFile(__dirname + '/index.html');
 });
 
+// Prevent spam from user
+var antiSpam = new antiSpam({
+    spamCheckInterval: 3000,
+    spamMinusPointsPerInterval: 3,
+    spamMaxPointsBeforeKick: 9,
+    spamEnableTempBan: true,
+    spamKicksBeforeTempBan: 3,
+    spamTempBanInMinutes: 10,
+    removeKickCountAfter: 1,
+    debug: false
+});
+
+
 // When client is connect to the chat (so on the socket) :
 io.on('connection',function(socket){
     console.log('a user connected');
+    console.log('socket = ');
+    console.log(socket.id);
+    antiSpam.onConnect(socket);
 
     socket.on('disconnect', function(){
         console.log('user disconnected');
