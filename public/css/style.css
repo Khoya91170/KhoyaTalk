@@ -1,7 +1,7 @@
 html, body{height:100%; margin:0;padding:0}
 body
 {
-    background-image: url('../assets/images/navy_blue.png');
+    background-image: url('/public/assets/images/navy_blue.png');
 }
 
 .boxLogin
