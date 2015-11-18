@@ -5,6 +5,8 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var trim = require('trim');
+
 //var antiSpam = require('socket-anti-spam');
 //var clients;
 
@@ -46,9 +48,15 @@ io.on('connection', function (socket) {
     });
 
     socket.on('chat message', function (msg) {
-        if (msg != '') {
-            io.emit('chat message', aUserName + " : " + msg);
+        if (trim(msg) != '') {
+            io.emit('chat message', this.username + " : " + msg);
         }
+    });
+
+    socket.on('chat connection', function(data){
+       socket.username = data;
+        socket.emit('connection success', data);
+        socket.broadcast.emit('user is connected', data + " vient de se connecter");
     });
 });
 
