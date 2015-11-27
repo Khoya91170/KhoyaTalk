@@ -42,12 +42,15 @@ form input { border: solid 1px rgb(182, 120, 0); padding: 10px; width: 90%; marg
 {
     background-color: #FFFFFF;
     height: 100%;
+    box-shadow: 0 0 6px 2.5px rgba(0, 0, 0, 0.06);
 }
 
-.boxMessage
+#boxMessage
 {
     min-height: 320px;
+
     max-height: 320px;
+    width:auto;
     background-color:#F5F5F5;
     overflow:scroll;
 }

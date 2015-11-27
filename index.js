@@ -31,7 +31,7 @@ app.get('/', function(req, res){
  });*/
 
 
-// When client is connect to the chat (so on the socket) :
+// When client is connected to the chat (so on the socket) :
 io.on('connection', function (socket) {
     console.log('a user connected');
     console.log('socket = ');
@@ -49,7 +49,7 @@ io.on('connection', function (socket) {
 
     socket.on('chat message', function (msg) {
         if (trim(msg) != '') {
-            io.emit('chat message', this.username + " : " + msg);
+            io.emit('chat message', this.username + ": " + msg);
         }
     });
 
