@@ -49,7 +49,7 @@
 
         $("#boxMessage").animate({
             scrollTop: $("#boxMessage").prop("scrollHeight")
-        }, 300);
+        }, 100);
     });
 
     socket.on('connection success', function(msg){
@@ -157,9 +157,9 @@
 
     </div>
     <hr/>
-    <div class="row">
-        <div class="col-lg-11" style="float:none; margin:0 auto; height:100%;">
-            <div class="row">
+    <div id="rowMessage" class="row">
+        <div class="col-lg-11 colMessage">
+            <div class="row rowBoxMessage">
                 <div id="boxMessage" class="col-lg-12">
                 </div>
             </div>
