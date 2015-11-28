@@ -41,11 +41,14 @@
                         "</div>" +
                     "</div> " +
                     "<div class='col-lg-11 messageFrame'>" +
+                        "<div class='triangle'>" +
+                        "</div>" +
                         message +
                     "</div>" +
-                "</div>")
-        $("#messages").animate({
-            scrollTop: $("#boxMessage").scrollHeight
+                "</div><hr/>")
+
+        $("#boxMessage").animate({
+            scrollTop: $("#boxMessage").prop("scrollHeight")
         }, 300);
     });
 

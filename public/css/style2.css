@@ -95,4 +95,31 @@ form input { border: solid 1px rgb(182, 120, 0); padding: 10px; width: 90%; marg
     box-shadow: 0 0 6px 2.5px rgba(0, 0, 0, 0.06);
     min-height: 60px;
     word-wrap:break-word;
+    position:relative;
+}
+
+/*We'll make a triangle on the left of the messageFrame*/
+.messageFrame:before
+{
+    width: 0;
+    height:0;
+    border-top:50px solid transparent;
+    border-right: 100px solid #ffffff;
+    border-bottom:50px solid transparent;
+    position :absolute;
+    top:10px;
+    left:-10px;
+    bottom:20px;
+}
+
+.triangle
+{
+    border-bottom: 11px solid transparent;
+    border-right: 18px solid white;
+    border-top: 14px solid transparent;
+    height: 0;
+    left: -10px;
+    position: absolute;
+    top: 5px;
+    width: 0;
 }
