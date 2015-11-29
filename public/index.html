@@ -55,17 +55,22 @@
     socket.on('connection success', function(msg){
         $('#page1').hide();
         $('link[href="/public/css/style.css"]').attr('href', '/public/css/style2.css');
-        $("#editAccount").append(msg + "<span class='caret .ml-5'></span>");
+        $("#editAccount").append(msg.nameUser + "<span class='caret .ml-5'></span>");
         $('#pageHome').show();
         $('#header').show();
+        if(!isNaN(msg.numberOfUserConnected))
+            $("#numberOfConnectedUser").html(msg.numberOfUserConnected - 1 + " en ligne");
     });
 
-    socket.on('user is connected', function(msg)
-    {
+    socket.on('user is connected', function(msg){
 
         $('#messages').append($('<li>').text(msg));
     });
 
+    socket.on('numberOfUser has changed', function(msg){
+        if(!isNaN(msg))
+            $("#numberOfConnectedUser").html(msg -1 + " en ligne");
+    });
     $(function() {
         $('#formConnection').submit(function(){
             socket.emit('chat connection', $('#pseudo').val());
@@ -152,7 +157,7 @@
             <h3>Chat</h3>
         </div>
         <div class="col-lg-offset-8 col-lg-3" style="text-align: center;">
-            <h3>3 online</h3>
+            <h3 id="numberOfConnectedUser">3 online</h3>
         </div>
 
     </div>
