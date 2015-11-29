@@ -63,8 +63,8 @@ io.on('connection', function (socket) {
     });
 });
 
-/*var port_number = server.listen(process.env.PORT || 3000);*/
+var port_number = server.listen(process.env.port || 3000);
 
-http.listen(3000, function () {
+http.listen(port_number, function () {
     console.log('listening on 3000');
 });
