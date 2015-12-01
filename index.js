@@ -42,8 +42,6 @@ io.on('connection', function (socket) {
     });
 
     socket.on('chat connection', function(data){
-        /*console.log('LOUUUUUUUUUU BOYYYYYYYYYYYY');
-        console.log("STRIPTAG" + striptags(data));*/
         numberOfConnectedUser++;
         socket.username = striptags(data);
 
